@@ -3,11 +3,6 @@
 This tool is used to automate rules for qbit of animes from your Anilist Watchlist.
 It will remove rules that are not on your Anilist Watchlist as well automaticaly.
 
-### Setup
-
-- Make sure you have all the dependencies installed.
-- Edit `config.json` file to configure the tool.
-
 ### Usage
 - `1st step`: go to anilist under settings->apps->developer->create new client. Then just put something random on the app name and leave the redirect url empty
 - `2nd step`: copy the ID to `config.json`->`client_id` and the Secret to `config.json`->`client_secret`
@@ -15,8 +10,9 @@ It will remove rules that are not on your Anilist Watchlist as well automaticaly
 - `4th step`: run & fill `userid` on `config.json` with the id you got the tool will print ("Your user id is: " if sucefull)
 - `5th step`: run and enjoy (u can make it a service to run on background)
 
-### Input Parameters
+### Setup/Input Parameters
 
+- Make sure you have all the dependencies installed.
 - `userid`: userid
   - Anilist userid (run the program the 1st time with at least `client_id` and `client_secret` filled)
 - `client_id` & `client_secret`: client id & client secret
