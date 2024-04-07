@@ -6,16 +6,18 @@ It will remove rules that are not on your Anilist Watchlist as well automaticaly
 
 ### DOCKER IMAGE ###
 https://hub.docker.com/repositories/simonlimon
-ENV anilistuserid="youruserid(int)"
-ENV client_id="yourclientid(int)"
-ENV client_secret="yoursecret"
-ENV torrentHost="localhost"
-ENV torrentPort="8181"
-ENV torrentUsername="admin"
-ENV torrentPassword="admin"
-ENV feeds="feed1,feed2"
-ENV rootSavePath="/media/anime/"
-ENV sleepTime="1440"
+`ENV anilistuserid="youruserid(int)"`
+`ENV client_id="yourclientid(int)"`
+`ENV client_secret="yoursecret"`
+`ENV torrentHost="localhost"`
+`ENV torrentPort="8181"`
+`ENV torrentUsername="admin"`
+`ENV torrentPassword="admin"`
+`ENV feeds="feed1,feed2"`
+`ENV rootSavePath="/media/anime/"`
+`ENV sleepTime="1440"`
+
+** if you dont know your anilist `userid` first time run `main.py`
 
 ### Usage
 - `1st step`: go to anilist under settings->apps->developer->create new client. Then just put something random on the app name and leave the redirect url empty
