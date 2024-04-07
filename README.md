@@ -3,6 +3,10 @@
 This tool is used to automate rules for qbit of animes from your Anilist Watchlist.
 It will remove rules that are not on your Anilist Watchlist as well automaticaly.
 
+
+### DOCKER IMAGE ###
+https://hub.docker.com/repositories/simonlimon
+
 ### Usage
 - `1st step`: go to anilist under settings->apps->developer->create new client. Then just put something random on the app name and leave the redirect url empty
 - `2nd step`: copy the ID to `config.json`->`client_id` and the Secret to `config.json`->`client_secret`
