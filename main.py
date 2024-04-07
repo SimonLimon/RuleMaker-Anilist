@@ -17,6 +17,7 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
         if not watchlist:
             print("empty watchlist or error on anilistAPI sleeping for 2 minutes")
             time.sleep(120)
+            continue
         for anime in watchlist:
             romajiTitle = anime["media"]["title"]["romaji"]
             if romajiTitle in oldTitlesList:
