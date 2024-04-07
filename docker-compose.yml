@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  myapp:
+    build:
+      context: .
+    environment:
+      - anilistuserid=${anilistuserid}
+      - client_id=${client_id}
+      - client_secret=${client_secret}
+      - torrentHost=${torrentHost}
+      - torrentPort=${torrentPort}
+      - torrentUsername=${torrentUsername}
+      - torrentPassword=${torrentPassword}
+      - feeds=${feeds}
+      - rootSavePath=${rootSavePath}
+      - sleepTime=${sleepTime}
+    volumes:
+      - ./app:/app
+    ports:
+      - "18080:18080"
