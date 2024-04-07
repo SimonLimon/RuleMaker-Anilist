@@ -1,6 +1,7 @@
 # RuleMaker-Anilist
 
 This tool is used to automate rules for qbit of animes from your Anilist Watchlist.
+It will remove rules that are not on your anilist watchlist as well automaticaly.
 
 ### Setup
 
@@ -11,8 +12,8 @@ This tool is used to automate rules for qbit of animes from your Anilist Watchli
 - `1st step`: go to anilist under settings->apps->developer->create new client. Then just put something random on the app name and leave the redirect url empty
 - `2nd step`: copy the ID to `config.json`->`client_id` and the Secret to `config.json`->`client_secret`
 - `3rd step`: fill the rest of `config.json` as it is explained on parametres (note you will mostlikely not know ur `userid` until the first execution of the tool)
-- `4th step`: run & fill userid with the id you got the tool will print ("Your user id is: " if sucefull)
-- `5th step`: run and enjoy
+- `4th step`: run & fill `userid` on `config.json` with the id you got the tool will print ("Your user id is: " if sucefull)
+- `5th step`: run and enjoy (u can make it a service to run on background)
 
 ### Input Parameters
 
