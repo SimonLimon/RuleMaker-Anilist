@@ -1,7 +1,7 @@
 # RuleMaker-Anilist
 
 This tool is used to automate rules for qbit of animes from your Anilist Watchlist.
-It will remove rules that are not on your anilist watchlist as well automaticaly.
+It will remove rules that are not on your Anilist Watchlist as well automaticaly.
 
 ### Setup
 
