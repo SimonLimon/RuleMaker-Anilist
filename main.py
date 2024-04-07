@@ -3,6 +3,7 @@ import requestsToAnilist
 import time
 from collections import OrderedDict
 import qbittorrentapi
+import os
 
 
 def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
@@ -15,8 +16,8 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
         oldTitlesList = list(qbt_client.rss_rules().keys())
         watchlist = requestsToAnilist.getUserWatchList(userid, 0)
         if not watchlist:
-            print("empty watchlist or error on anilistAPI sleeping for 2 minutes")
-            time.sleep(120)
+            print("empty watchlist or error on anilistAPI sleeping for 1 minutes")
+            time.sleep(60)
             continue
         for anime in watchlist:
             romajiTitle = anime["media"]["title"]["romaji"]
@@ -42,19 +43,42 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
 
 
 def main():
-    with open("config.json", "r") as file:
-        config = json.load(file)
-    if config["anilistuserid"] == -1:
-        requestsToAnilist.doSetup(config["client_id"], config["client_secret"])
+    if "config.json" not in os.listdir(os.getcwd()):
+        configUserid = int(os.environ.get("anilistuserid"))
+        configClientid = os.environ.get("client_id")
+        configClientsecret = os.environ.get("client_secret")
+        configTorrentHost = os.environ.get("torrentHost")
+        configTorrentPort = os.environ.get("torrentPort")
+        configTorrentUsername = os.environ.get("torrentUsername")
+        configTorrentPassword = os.environ.get("torrentPassword")
+        configFeeds = os.environ.get("feeds")
+        configRootSavePath = os.environ.get("rootSavePath")
+        configSleepTime = int(os.environ.get("sleepTime"))
+    else:
+        with open("config.json", "r") as file:
+            config = json.load(file)
+        configUserid = config["anilistuserid"]
+        configClientid = config["client_id"]
+        configClientsecret = config["client_secret"]
+        configTorrentHost = config["torrentAPI"]["host"]
+        configTorrentPort = config["torrentAPI"]["port"]
+        configTorrentUsername = config["torrentAPI"]["username"]
+        configTorrentPassword = config["torrentAPI"]["password"]
+        configFeeds = config["feeds"]
+        configRootSavePath = config["rootSavePath"]
+        configSleepTime = config["sleepTime"]
+
+    if configUserid == -1:
+        requestsToAnilist.doSetup(configClientid, configClientsecret)
     conn_info = dict(
-        host=config["torrentAPI"]["host"],
-        port=config["torrentAPI"]["port"],
-        username=config["torrentAPI"]["username"],
-        password=config["torrentAPI"]["password"],
+        host=configTorrentHost,
+        port=configTorrentPort,
+        username=configTorrentUsername,
+        password=configTorrentPassword,
     )
     qbt_client = qbittorrentapi.Client(**conn_info)
-
-    mainLoop(userid=config["anilistuserid"], feeds=config["feeds"], rootSavePath=config["rootSavePath"], sleepTime=config["sleepTime"], qbt_client=qbt_client)
+    mainLoop(userid=configUserid, feeds=configFeeds, rootSavePath=configRootSavePath,
+             sleepTime=configSleepTime, qbt_client=qbt_client)
 
 
 def makeRuleTemplate(savePath, regex, feeds):
