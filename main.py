@@ -14,7 +14,9 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
     while True:
         oldTitlesList = list(qbt_client.rss_rules().keys())
         watchlist = requestsToAnilist.getUserWatchList(userid, 0)
-
+        if not watchlist:
+            print("empty watchlist or error on anilistAPI sleeping for 10 minutes")
+            time.sleep(600)
         for anime in watchlist:
             romajiTitle = anime["media"]["title"]["romaji"]
             if romajiTitle in oldTitlesList:
