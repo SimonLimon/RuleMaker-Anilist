@@ -42,7 +42,7 @@ def main():
     with open("config.json", "r") as file:
         config = json.load(file)
     #only uncoment if you dont know ur userid then put it on config.json
-    #requestsToAnilist.doSetup(config["client_id"], config["client_secret"])
+    requestsToAnilist.doSetup(config["client_id"], config["client_secret"])
     conn_info = dict(
         host=config["torrentAPI"]["host"],
         port=config["torrentAPI"]["port"],
