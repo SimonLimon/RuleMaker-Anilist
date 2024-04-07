@@ -31,7 +31,7 @@ It will remove rules that are not on your Anilist Watchlist as well automaticaly
 
 ### Output
 
-There is no visible output this will add the rules directly to our qbit WEBUI
+This will manage your qbitWEBUI rules automaticaly
 
 ### Disclaimer
 
