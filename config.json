@@ -1,0 +1,14 @@
+{
+  "sleepTime": 1440,
+  "anilistuserid": ,
+  "feeds": [],
+  "rootSavePath": "/media/anime/",
+  "client_id": "",
+  "client_secret": "",
+  "torrentAPI":{
+    "host": "localhost",
+    "port": 8181,
+    "username": "",
+    "password": ""
+  }
+}
