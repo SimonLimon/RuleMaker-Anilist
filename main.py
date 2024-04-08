@@ -125,8 +125,12 @@ def getRegex(titles):
             aux = titles[i].split("-")[0]
             moreTitles += [aux + titles[i].split("-")[1]]
             moreTitles += [aux + " " + titles[i].split("-")[1]]
-        if len(titles[i]) > 4:
-            moreTitles += " ".join(titles[i].split(" ")[:4])
+        if len(titles[i].split(" ")) > 4:
+            titlesSplit = list(titles[i].split(" "))
+            aux = []
+            for word in list(titlesSplit)[:4]:
+                aux.append(word)
+            moreTitles.append(' '.join(aux))
     titles += moreTitles
 
     titles = list(OrderedDict.fromkeys(titles))
