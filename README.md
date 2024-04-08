@@ -3,6 +3,8 @@
 This tool is used to automate rules for qbit of animes from your Anilist Watchlist.
 It will remove rules that are not on your Anilist Watchlist as well automaticaly.
 
+###UPDATES NOT ADDED TO IMAGE (build yourself if you want)###
+-added new regex options for feeds that like to cut the title short instead of using full title or alternative name (for titles with more than 4 words, will be added to regex a title variation with only the first 4 words)
 
 ### DOCKER IMAGE ###
 https://hub.docker.com/repositories/simonlimon
