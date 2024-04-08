@@ -125,6 +125,8 @@ def getRegex(titles):
             aux = titles[i].split("-")[0]
             moreTitles += [aux + titles[i].split("-")[1]]
             moreTitles += [aux + " " + titles[i].split("-")[1]]
+        if len(titles[i]) > 4:
+            moreTitles += " ".join(titles[i].split(" ")[:4])
     titles += moreTitles
 
     titles = list(OrderedDict.fromkeys(titles))
