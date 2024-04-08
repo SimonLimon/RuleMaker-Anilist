@@ -37,7 +37,7 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
         for romajiTitle in oldTitlesList:
             qbt_client.rss_removeRule(rule_name=romajiTitle)
 
-        print("startSleeping for: " + str(sleepTime/60) + " hours and " + str(sleepTime%60) + " minutes")
+        print("startSleeping for: " + str(sleepTime//60) + " hours and " + str(sleepTime%60) + " minutes")
         time.sleep(sleepTime*60)
         """end of cycle"""
 
@@ -51,7 +51,7 @@ def main():
         configTorrentPort = os.environ.get("torrentPort")
         configTorrentUsername = os.environ.get("torrentUsername")
         configTorrentPassword = os.environ.get("torrentPassword")
-        configFeeds = os.environ.get("feeds")
+        configFeeds = os.environ.get("feeds").split(',')
         configRootSavePath = os.environ.get("rootSavePath")
         configSleepTime = int(os.environ.get("sleepTime"))
     else:
@@ -121,6 +121,10 @@ def getRegex(titles):
             if aux.lower() != "re":
                 moreTitles += [aux]
             moreTitles += [aux + " " + titles[i].split(":")[1]]
+        if "-" in titles[i]:
+            aux = titles[i].split("-")[0]
+            moreTitles += [aux + titles[i].split("-")[1]]
+            moreTitles += [aux + " " + titles[i].split("-")[1]]
     titles += moreTitles
 
     titles = list(OrderedDict.fromkeys(titles))
