@@ -4,6 +4,7 @@ import time
 from collections import OrderedDict
 import qbittorrentapi
 import os
+import datetime
 
 
 def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
@@ -16,8 +17,8 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
         oldTitlesList = list(qbt_client.rss_rules().keys())
         watchlist = requestsToAnilist.getUserWatchList(userid, 0)
         if not watchlist:
-            print("empty watchlist or error on anilistAPI sleeping for 1 minutes")
-            time.sleep(60)
+            print(str(datetime.datetime.now()) + ": empty watchlist or error on anilistAPI sleeping for 5 minutes")
+            time.sleep(300)
             continue
         for anime in watchlist:
             romajiTitle = anime["media"]["title"]["romaji"]
@@ -33,11 +34,13 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
 
             ruleTemp = makeRuleTemplate(savePath=savePath, regex=regex, feeds=feeds)
             qbt_client.rss_set_rule(rule_name=romajiTitle, rule_def=ruleTemp)
+            print(str(datetime.datetime.now()) + ": rule made: " + romajiTitle)
 
         for romajiTitle in oldTitlesList:
             qbt_client.rss_removeRule(rule_name=romajiTitle)
+            print(str(datetime.datetime.now()) + ": rule deleted: " + romajiTitle)
 
-        print("startSleeping for: " + str(sleepTime//60) + " hours and " + str(sleepTime%60) + " minutes")
+        print(str(datetime.datetime.now()) + ": startSleeping for: " + str(sleepTime//60) + " hours and " + str(sleepTime%60) + " minutes")
         time.sleep(sleepTime*60)
         """end of cycle"""
 
