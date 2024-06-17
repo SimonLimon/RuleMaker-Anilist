@@ -28,7 +28,11 @@ def mainLoop(userid, feeds, rootSavePath, sleepTime, qbt_client):
 
             englishTitle = anime["media"]["title"]["english"]
             synonyms = anime["media"]["synonyms"]
-            possibleTitles = [romajiTitle, englishTitle] + synonyms
+            possibleTitles = [romajiTitle]
+            if englishTitle:
+                possibleTitles.append(englishTitle)
+            if synonyms:
+                possibleTitles += synonyms
             regex = getRegex(possibleTitles)
             savePath = rootSavePath + romajiTitle
 
