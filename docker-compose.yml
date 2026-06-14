@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   RuleMakerAnilist:
+    image: simonlimon/rulemaker-anilist:latest
     build:
       context: .
     environment:
